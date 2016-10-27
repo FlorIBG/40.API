@@ -22,19 +22,14 @@ function agregarLista () {
 		var divValue = input.value; //guarda lo que hay en el input de arriba
 		var titulo = document.createTextNode(divValue); //crea el nodo de texto del input de arriba
 		div.appendChild(titulo); //le dices al div que va a guardar el texto del input
-		var btnAnadirLista = document.createElement("button"); //es el botón que sale a la derecha para añadir una nueva lista
-		btnAnadirLista.className = "btn btn-info";//clases bootstrap
-		var textobtnAnadirLista = document.createTextNode("Añadir Lista"); // el texto del boton añadir lista
-		var segundoBoton = document.createElement("button");// boton para añadir tarjeta
+		var anadirTarjeta = document.createElement("button");// boton para añadir tarjeta
 		var textoSegundoBoton = document.createTextNode("Añadir una tarjeta");//texto del boton añadir tarjeta
 		divGuardarNombreDeLista.appendChild(div);//dices que el contenedor de la función de arriba va a contener lo que se escribió en el input de arriba
 		contenedor.appendChild(divGuardarNombreDeLista);
-		btnAnadirLista.appendChild(textobtnAnadirLista);//dice que el botón de añadir lista va a contener un nodo de texto
-		divGuardarNombreDeLista.appendChild(btnAnadirLista);//dice que el contenedor debe mostrar el botón de añadir lista
-		segundoBoton.appendChild(textoSegundoBoton);//el botón de añadir tarjeta contiene un nodo de texto
-		segundoBoton.className = "display btn btn-info";//clase del botón para que quedé abajo de la tarjeta
-		divGuardarNombreDeLista.appendChild(segundoBoton);//el contenedor debe mostrar el botón añadir tarjeta
-		btnAnadirLista.onclick = function () { //función que se activa al presionar el botón añadir lista
+		anadirTarjeta.appendChild(textoSegundoBoton);//el botón de añadir tarjeta contiene un nodo de texto
+		anadirTarjeta.className = "display btn btn-info";//clase del botón para que quedé abajo de la tarjeta
+		divGuardarNombreDeLista.appendChild(anadirTarjeta);//el contenedor debe mostrar el botón añadir tarjeta
+		anadirTarjeta.onclick = function () { //función que se activa al presionar el botón añadir lista
 			var textarea = document.createElement("textarea");//crea un textarea para ingresar la lista de tareas
 			textarea.setAttribute("textarea","autofocus");//atributo de textarea para que tenga un autofocus
 			contenedor.appendChild(textarea);//el contenedor muestra el textarea en el HTML
@@ -44,22 +39,14 @@ function agregarLista () {
 			botonGuardar.appendChild(textoBotonGuardar);//se indica al botón que va a tener un nodo de texto
 			contenedor.appendChild(botonGuardar);//se indica al contenedor que va a tener un botón de guardar
 			botonGuardar.onclick = function () { //Función que se ejecuta al presionar el botón guardar
+				textarea.style.display = "none";
+				botonGuardar.style.display = "none";
 				var li = document.createElement("li");//crea una tarea de la lista
 				var liValue = textarea.value;//guarda el texto que se ingresó en el textarea
 				var tareas = document.createTextNode(liValue);//crea el nodo de texto de lo que se ingresó en el textarea
 				li.appendChild(tareas);//imprime lo que se escribió en el textarea
 				contenedor.appendChild(li);//muestra en el HTML lo que se ingresó en el textarea
-				var btnAnadirLista = document.createElement("button"); //es el botón que sale a la derecha para añadir una nueva lista
-				btnAnadirLista.className = "btn btn-info";//clases bootstrap
-				var textobtnAnadirLista = document.createTextNode("Añadir Lista"); // el texto del boton añadir lista
-				btnAnadirLista.appendChild(textobtnAnadirLista);//dice que el botón de añadir lista va a contener un nodo de texto
-				contenedor.appendChild(btnAnadirLista);//dice que el contenedor debe mostrar el botón de añadir lista
 			}
-		}
-		segundoBoton.onclick = function () {
-			var textarea = document.createElement("textarea");
-			textarea.setAttribute("textarea","autofocus");
-			contenedor.appendChild(textarea);
 		}
 	}
 }
