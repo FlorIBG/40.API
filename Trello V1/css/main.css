@@ -1,0 +1,32 @@
+input {
+	width: 30%;
+}
+#inputLista div {
+	width: 80%;
+	display: inline-block;
+}	
+.display {
+	display: block;
+}
+textarea {
+	width: 80%;
+}
+li {
+	display: inherit;
+}
+body {
+	background-color: #CF81AD;
+}
+.acomodarListas {
+	background-color: #CF91AD;
+}
+#inputLista div {
+	width: 30%;
+}
+.nombreLista { 
+	width: 30%;
+	background-color: #CF71AD;
+	float: left;
+	font-size: 200%;
+	text-align: center;
+ }
