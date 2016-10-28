@@ -6,7 +6,7 @@ input {
 	display: inline-block;
 }	
 .display {
-	display: block;
+	display: block !important;
 }
 textarea {
 	width: 80%;

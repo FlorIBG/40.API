@@ -1,4 +1,5 @@
-//Función que al presionar el botón agregar lista da inputs
+	var contadorTarjetas = 1;
+//Función que al presionar el botón agregar lista2 da inputs
 function agregarLista () {
 	var div = document.createElement("div");
 	div.className = "acomodarListas";
@@ -29,24 +30,56 @@ function agregarLista () {
 		anadirTarjeta.appendChild(textoSegundoBoton);//el botón de añadir tarjeta contiene un nodo de texto
 		anadirTarjeta.className = "display btn btn-info";//clase del botón para que quedé abajo de la tarjeta
 		divGuardarNombreDeLista.appendChild(anadirTarjeta);//el contenedor debe mostrar el botón añadir tarjeta
+		divGuardarNombreDeLista.addEventListener("drop",soltar);
+		divGuardarNombreDeLista.addEventListener("dragover",arrastrarSobre);
+		divGuardarNombreDeLista.addEventListener("dragleave",dejarDeArrastrar);
 		anadirTarjeta.onclick = function () { //función que se activa al presionar el botón añadir lista
 			var textarea = document.createElement("textarea");//crea un textarea para ingresar la lista de tareas
 			textarea.setAttribute("textarea","autofocus");//atributo de textarea para que tenga un autofocus
-			contenedor.appendChild(textarea);//el contenedor muestra el textarea en el HTML
+			divGuardarNombreDeLista.appendChild(textarea);//el contenedor muestra el textarea en el HTML
 			var botonGuardar = document.createElement("button");//para crear un botón de guardar para la lista de tareas
 			botonGuardar.className = "btn btn-info";//clases bootstrap
 			var textoBotonGuardar = document.createTextNode("Guardar");//nodo de texto del botón guardar
 			botonGuardar.appendChild(textoBotonGuardar);//se indica al botón que va a tener un nodo de texto
-			contenedor.appendChild(botonGuardar);//se indica al contenedor que va a tener un botón de guardar
+			divGuardarNombreDeLista.appendChild(botonGuardar);//se indica al contenedor que va a tener un botón de guardar
 			botonGuardar.onclick = function () { //Función que se ejecuta al presionar el botón guardar
+				function allowDrop (ev) {
+					ev.preventDefault();
+				}
 				textarea.style.display = "none";
 				botonGuardar.style.display = "none";
-				var li = document.createElement("li");//crea una tarea de la lista
-				var liValue = textarea.value;//guarda el texto que se ingresó en el textarea
-				var tareas = document.createTextNode(liValue);//crea el nodo de texto de lo que se ingresó en el textarea
-				li.appendChild(tareas);//imprime lo que se escribió en el textarea
-				contenedor.appendChild(li);//muestra en el HTML lo que se ingresó en el textarea
+				var divTarjetas = document.createElement("div");
+				var divtarea = document.createElement("p");//crea una tarea de la lista
+				divTarjetas.style.display = "block";
+				divTarjetas.style.border = "solid";
+				var divValue = textarea.value;//guarda el texto que se ingresó en el textarea
+				var tareas = document.createTextNode(divValue);//crea el nodo de texto de lo que se ingresó en el textarea
+				divtarea.appendChild(tareas);//imprime lo que se escribió en el textarea
+				divTarjetas.appendChild(divtarea)
+				divGuardarNombreDeLista.appendChild(divTarjetas);
+				divTarjetas.setAttribute("draggable","true");
+				divTarjetas.setAttribute("id","divGuardarNombreDeLista.1"+contadorTarjetas);
+				divTarjetas.addEventListener("dragstart",arrastrar);
+				divTarjetas.addEventListener("dragend",terminarDeArrastrar);
+				contadorTarjetas++;
 			}
 		}
+	}
+	function arrastrar (e) {
+		e.dataTransfer.setData("text",this.id);//para que se mueva la tarjeta
+	}
+	function arrastrarSobre (e) {
+		e.preventDefault ();//para decir que la tarjeta se mueve. Quita los candados para que los demás elementos del HTML acepte que se están moviendo
+	}
+	function soltar (e) {
+		var idArrastrar = e.dataTransfer.getData("text");
+		var tarjetaArrastrada = document.getElementById(idArrastrar);
+		this.insertBefore(tarjetaArrastrada,this.childNodes[1]);
+	}
+	function terminarDeArrastrar (e) {
+		this.style.opacity = null;
+	}
+	function dejarDeArrastrar (e) {
+		this.style.backgroundColor = "#CDC4C4";
 	}
 }
