@@ -59,7 +59,6 @@ function agregarLista () {
 				var tareas = document.createTextNode(divValue);//crea el nodo de texto de lo que se ingresó en el textarea
 				divtarea.appendChild(tareas);//imprime lo que se escribió en el textarea
 				divTarjetas.appendChild(divtarea)
-				//tareas.style.align="left";	
 				divGuardarNombreDeLista.appendChild(divTarjetas);
 				divTarjetas.setAttribute("draggable","true");
 				divTarjetas.setAttribute("id","divGuardarNombreDeLista.1"+contadorTarjetas);
@@ -70,7 +69,7 @@ function agregarLista () {
 		}
 	}
 	function arrastrar (e) {
-		e.dataTransfer.setData("text",this.id);//para que se mueva la tarjeta
+		e.dataTransfer.setData("text",e.target.id);//para que se mueva la tarjeta
 	}
 	function arrastrarSobre (e) {
 		e.preventDefault ();//para decir que la tarjeta se mueve. Quita los candados para que los demás elementos del HTML acepte que se están moviendo
@@ -78,7 +77,7 @@ function agregarLista () {
 	function soltar (e) {
 		var idArrastrar = e.dataTransfer.getData("text");
 		var tarjetaArrastrada = document.getElementById(idArrastrar);
-		this.insertBefore(tarjetaArrastrada,this.childNodes[1]);
+		this.insertBefore(tarjetaArrastrada,this.childNodes[2]);
 		this.classList.add("efectosDeTransiciones");
 	}
 	function terminarDeArrastrar (e) {
