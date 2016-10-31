@@ -52,6 +52,8 @@ function agregarLista () {
 				var divtarea = document.createElement("p");//crea una tarea de la lista
 				divTarjetas.style.display = "block";
 				divTarjetas.style.border = "solid";
+				divTarjetas.style.borderColor = "purple";
+				divTarjetas.style.width = "100%";
 				var divValue = textarea.value;//guarda el texto que se ingresó en el textarea
 				var tareas = document.createTextNode(divValue);//crea el nodo de texto de lo que se ingresó en el textarea
 				divtarea.appendChild(tareas);//imprime lo que se escribió en el textarea
@@ -75,11 +77,13 @@ function agregarLista () {
 		var idArrastrar = e.dataTransfer.getData("text");
 		var tarjetaArrastrada = document.getElementById(idArrastrar);
 		this.insertBefore(tarjetaArrastrada,this.childNodes[1]);
+		this.classList.add("efectosDeTransiciones");
 	}
 	function terminarDeArrastrar (e) {
 		this.style.opacity = null;
 	}
 	function dejarDeArrastrar (e) {
-		this.style.backgroundColor = "#CDC4C4";
+		this.style.backgroundColor = "#C1AAC9";
+		this.classList.remove("efectosDeTransiciones");
 	}
 }

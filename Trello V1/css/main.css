@@ -30,3 +30,12 @@ body {
 	font-size: 200%;
 	text-align: center;
  }
+ .efectosDeTransiciones {
+ 	transition: all 0.5s ease;
+ 	background: red;
+  	padding: 10px;
+ }
+ .efectosDeTransiciones:hover {
+ 	background: green;
+  	padding: 20px;
+ }
