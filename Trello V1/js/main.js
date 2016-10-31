@@ -1,22 +1,23 @@
 	var contadorTarjetas = 1;
 //Función que al presionar el botón agregar lista2 da inputs
 function agregarLista () {
-	var div = document.createElement("div");
-	div.className = "acomodarListas";
+	var divCaja = document.createElement("div");
+	divCaja.className = "acomodarListas";
 	var input = document.createElement("input"); 	//para crear el input
 	input.setAttribute("placeholder","Ingresa nombre de la lista")//placeholder
 	input.className = "form-control";
 	var contenedor = document.getElementById("inputLista");	//para decir en donde tiene que poner el input
-	div.appendChild(input);	//para que aparezca el input en la pantalla
+	divCaja.appendChild(input);	//para que aparezca el input en la pantalla
 	var boton = document.createElement("button");//para crear el boton de agregar nombre de la lista
 	boton.className = "btn btn-info";//clases bootstrap
 	var texto = document.createTextNode("Guardar");	//para agregar el texto del boton
 	boton.appendChild(texto);	//crea el texto del boton
-	div.appendChild(boton);
-	contenedor.appendChild(div);//crea el boton
+	divCaja.appendChild(boton);
+	contenedor.appendChild(divCaja);//crea el boton
 	boton.onclick = function () { //Función para cuando se presione el botón guardar, para hacer una nueva lista
 		input.style.display = "none";
 		boton.style.display = "none";
+		divCaja.style.display= "none";
 		var divGuardarNombreDeLista = document.createElement("div");
 		divGuardarNombreDeLista.className = "nombreLista";
 		var div = document.createElement("div"); //creo un elemento div
@@ -58,6 +59,7 @@ function agregarLista () {
 				var tareas = document.createTextNode(divValue);//crea el nodo de texto de lo que se ingresó en el textarea
 				divtarea.appendChild(tareas);//imprime lo que se escribió en el textarea
 				divTarjetas.appendChild(divtarea)
+				//tareas.style.align="left";	
 				divGuardarNombreDeLista.appendChild(divTarjetas);
 				divTarjetas.setAttribute("draggable","true");
 				divTarjetas.setAttribute("id","divGuardarNombreDeLista.1"+contadorTarjetas);

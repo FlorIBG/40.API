@@ -25,6 +25,7 @@ body {
 }
 .nombreLista { 
 	width: 30%;
+	margin-right: 3%;
 	background-color: #CF71AD;
 	float: left;
 	font-size: 200%;
