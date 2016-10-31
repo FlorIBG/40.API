@@ -44,13 +44,11 @@ function agregarLista () {
 			botonGuardar.appendChild(textoBotonGuardar);//se indica al botón que va a tener un nodo de texto
 			divGuardarNombreDeLista.appendChild(botonGuardar);//se indica al contenedor que va a tener un botón de guardar
 			botonGuardar.onclick = function () { //Función que se ejecuta al presionar el botón guardar
-				function allowDrop (ev) {
-					ev.preventDefault();
-				}
 				textarea.style.display = "none";
 				botonGuardar.style.display = "none";
 				var divTarjetas = document.createElement("div");
 				var divtarea = document.createElement("p");//crea una tarea de la lista
+				divTarjetas.className = "alinear";
 				divTarjetas.style.display = "block";
 				divTarjetas.style.border = "solid";
 				divTarjetas.style.borderColor = "purple";
